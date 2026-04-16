@@ -1,0 +1,51 @@
+---
+import { AstroSeo } from "@astrolib/seo";
+import { author } from "../config/author";
+import "../styles/global.css";
+
+// Safe defaults
+const seo = {
+  title: Astro.props.title || author.seo.title,
+  description: Astro.props.description || author.seo.description,
+  canonical: Astro.props.canonical || author.contact.url,
+  openGraph: {
+    url: Astro.props.openGraph?.url || author.contact.url,
+    title: Astro.props.openGraph?.title || author.seo.title,
+    description: Astro.props.openGraph?.description || author.seo.description,
+    images: [{ url: "/fov.ico" }],
+    site_name: Astro.props.openGraph?.site_name || author.name,
+  },
+};
+---
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1"
+/>
+<meta name="author" content={author.name} />
+
+<AstroSeo
+  title={seo.title}
+  description={seo.description}
+  canonical={seo.canonical}
+  openGraph={seo.openGraph}
+/>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DFY89MTYP2"
+></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-DFY89MTYP2");
+</script>
