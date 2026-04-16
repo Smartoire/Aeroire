@@ -1,0 +1,19 @@
+---
+import LandingPage from "../components/LandingPage.astro";
+import { author } from "../config/author";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title={author.seo.title}
+  description={author.seo.description}
+  canonical={author.contact.url}
+  openGraph={{
+    url: author.contact.url,
+    title: author.seo.title,
+    description: author.seo.description,
+    site_name: author.name,
+  }}
+>
+  <LandingPage />
+</Layout>
